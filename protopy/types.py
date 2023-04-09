@@ -6,6 +6,7 @@ from pydantic import BaseModel, Field
 
 # TODO: Type narrow all of these Optional fields (could use @validator + Union)
 # TODO: Pull more from atproto typescript repo
+# TODO: Maybe alias the camel case to snake case
 
 
 class Session(BaseModel):
