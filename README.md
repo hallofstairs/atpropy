@@ -1,2 +1,2 @@
 # skygaze
-Custom algorithmic feeds for bluesky and the AT Protocol
+Custom tooling for bluesky and the AT Protocol
