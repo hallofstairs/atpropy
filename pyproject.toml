@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Custom algorithmic feeds for bluesky and the AT Protocol"
 authors = ["Jett Hollister <jett.hollister@proton.me>"]
 readme = "README.md"
-packages = [{include = 'atproto'}]
+packages = [{include = 'protopy'}]
 
 [tool.poetry.dependencies]
 python = "^3.10"

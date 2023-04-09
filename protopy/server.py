@@ -1,6 +1,6 @@
 import requests
 
-from atproto.types import Session
+from protopy.types import Session
 
 # class Session:
 #     def __init__(self, host: str, username: str, password: str) -> None:

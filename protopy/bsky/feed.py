@@ -1,6 +1,6 @@
 import requests
 
-from atproto.types import Feed, Session
+from protopy.types import Feed, Session
 
 
 def get_author_feed(host: str, session: Session, handle: str, limit: int) -> Feed:
