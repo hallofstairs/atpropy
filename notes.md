@@ -12,6 +12,10 @@
 - A record is a key/value document. It's the smallest unit of data which can be transmitted over the network. Every record has a type and is identified by a [TID](https://atproto.com/specs/atp#timestamp-ids-tid)
 
 
+## Federation
+
+- Personal data servers house repos
+
 
 ## Random
 
