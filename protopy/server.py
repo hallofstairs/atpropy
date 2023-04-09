@@ -10,8 +10,11 @@ from protopy.types import Session
 
 
 def create_session(host: str, username: str, password: str) -> Session:
-    resp = requests.post(
-        f"{host}/xrpc/com.atproto.server.createSession",
-        json={"identifier": username, "password": password},
+    """Create ATP session for specified host URL."""
+
+    return Session.parse_obj(
+        requests.post(
+            f"{host}/xrpc/com.atproto.server.createSession",
+            json={"identifier": username, "password": password},
+        ).json()
     )
-    return Session.parse_obj(resp.json())

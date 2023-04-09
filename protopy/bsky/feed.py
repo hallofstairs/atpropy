@@ -36,7 +36,7 @@ def get_likes(host: str, session: Session, uri: str, cid: str, limit: int) -> Li
         requests.get(
             f"{host}/xrpc/app.bsky.feed.getLikes?uri={uri}&cid={cid}&limit={limit}",
             headers={"Authorization": f"Bearer {session.accessJwt}"},
-        )
+        ).json()
     )
 
 
@@ -47,5 +47,5 @@ def get_post_thread(host: str, session: Session, uri: str, depth: int) -> Thread
         requests.get(
             f"{host}/xrpc/app.bsky.feed.getPostThread?uri={uri}&depth={depth}",
             headers={"Authorization": f"Bearer {session.accessJwt}"},
-        )
+        ).json()
     )
