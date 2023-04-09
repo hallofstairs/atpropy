@@ -5,6 +5,7 @@ from typing import Literal, Optional
 from pydantic import BaseModel, Field
 
 # TODO: Type narrow all of these Optional fields (could use @validator + Union)
+# TODO: Pull more from atproto typescript repo
 
 
 class Session(BaseModel):
@@ -77,7 +78,7 @@ class RecordImageRef(BaseModel):
     link: str = Field(..., alias="$link")
 
 
-class RecordImage(BaseModel):
+class Thumbnail(BaseModel):
     type: Literal["blob"] = Field(..., alias="$type")
     ref: RecordImageRef
     mimeType: Literal["image/jpeg"] | str  # TODO: This should only be valid image types
@@ -86,12 +87,24 @@ class RecordImage(BaseModel):
 
 class RecordImageData(BaseModel):
     alt: str
-    image: RecordImage
+    image: Thumbnail
 
 
 class RecordImageEmbed(BaseModel):
     type: Literal["app.bsky.embed.images"] = Field(..., alias="$type")
     images: list[RecordImageData]
+
+
+class RecordExternalData(BaseModel):
+    uri: str
+    thumb: Thumbnail
+    title: str
+    description: str
+
+
+class RecordExternalEmbed(BaseModel):
+    type: Literal["app.bsky.embed.external"] = Field(..., alias="$type")
+    external: RecordExternalData
 
 
 class Record(BaseModel):
@@ -100,7 +113,9 @@ class Record(BaseModel):
     createdAt: str  # datetime
     reply: Optional[ReplyId]
     facets: Optional[list[Facet]]
-    embed: Optional[RecordImageEmbed]  # TODO: Add other types of embeds eg video
+    embed: Optional[
+        RecordImageEmbed | RecordExternalEmbed
+    ]  # TODO: Add other types of embeds eg video
 
 
 class Image(BaseModel):
@@ -109,9 +124,21 @@ class Image(BaseModel):
     alt: str
 
 
-class Embed(BaseModel):
+class ImageEmbed(BaseModel):
     type: Literal["app.bsky.embed.images#view"] = Field(..., alias="$type")
     images: list[Image]
+
+
+class External(BaseModel):
+    uri: str
+    title: str
+    description: str
+    thumb: str
+
+
+class ExternalEmbed(BaseModel):
+    type: Literal["app.bsky.embed.external#view"] = Field(..., alias="$type")
+    external: External
 
 
 class Post(BaseModel):
@@ -124,7 +151,7 @@ class Post(BaseModel):
     likeCount: int
     indexedAt: str
     viewer: Viewer
-    embed: Optional[Embed]
+    embed: Optional[ExternalEmbed | ImageEmbed]
 
 
 class Reply(BaseModel):
