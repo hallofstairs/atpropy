@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "protopy"
-version = "0.1.0"
-description = "Custom algorithmic feeds for bluesky and the AT Protocol"
+version = "0.0.1"
+description = "Python wrapper for the ATProtocol API"
 authors = ["Jett Hollister <jett.hollister@proton.me>"]
 readme = "README.md"
 packages = [{include = 'protopy'}]
@@ -26,9 +26,7 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.black]
-exclude = "^tests/"
 line-length = 88
-# skip-string-normalization = true
 
 [tool.ruff]
 exclude = [
@@ -58,8 +56,4 @@ target-version = "py310" # Python 3.10
 
 [tool.isort]
 profile = "black"
-# multi_line_output = 3
-# include_trailing_comma = true
-# force_grid_wrap = 0
-# line_length = 88
 
