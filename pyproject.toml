@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "skygaze"
+name = "protopy"
 version = "0.1.0"
 description = "Custom algorithmic feeds for bluesky and the AT Protocol"
 authors = ["Jett Hollister <jett.hollister@proton.me>"]
@@ -11,6 +11,7 @@ python = "^3.10"
 python-dotenv = "^1.0.0"
 requests = "^2.28.2"
 pydantic = "^1.10.7"
+pre-commit = "^3.2.2"
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.2.0"
