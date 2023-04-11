@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "atprotocol"
-version = "0.0.2"
+name = "atpropy"
+version = "0.0.1"
 description = "Python wrapper for the ATProtocol API"
 authors = ["Jett Hollister <jett.hollister@proton.me>"]
 readme = "README.md"
-packages = [{include = 'atprotocol'}]
+packages = [{include = 'atpropy'}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
