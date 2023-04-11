@@ -4,7 +4,7 @@ version = "0.0.1"
 description = "Python wrapper for the ATProtocol API"
 authors = ["Jett Hollister <jett.hollister@proton.me>"]
 readme = "README.md"
-packages = [{include = 'protopy'}]
+packages = [{include = 'atprotocol'}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
