@@ -104,18 +104,24 @@ class RecordExternalEmbed(BaseModel):
     external: RecordExternalData
 
 
+class RecordPostEmbed(BaseModel):
+    type: Literal["app.bsky.embed.record"] = Field(..., alias="$type")
+    record: PostId
+
+
+EmbedType = RecordImageEmbed | RecordExternalEmbed | RecordPostEmbed
+
+
 class Record(BaseModel):
     type: Literal["app.bsky.feed.post"] = Field(..., alias="$type")
     text: str
     createdAt: str  # datetime
     reply: Optional[ReplyId]
     facets: Optional[list[Facet]]
-    embed: Optional[
-        RecordImageEmbed | RecordExternalEmbed
-    ]  # TODO: Add other types of embeds
+    embed: Optional[EmbedType]  # TODO: Add other types of embeds
 
 
-class Image(BaseModel):
+class ImageEmbedData(BaseModel):
     thumb: str
     fullsize: str
     alt: str
@@ -123,10 +129,10 @@ class Image(BaseModel):
 
 class ImageEmbed(BaseModel):
     type: Literal["app.bsky.embed.images#view"] = Field(..., alias="$type")
-    images: list[Image]
+    images: list[ImageEmbedData]
 
 
-class External(BaseModel):
+class ExternalEmbedData(BaseModel):
     uri: str
     title: str
     description: str
@@ -135,7 +141,22 @@ class External(BaseModel):
 
 class ExternalEmbed(BaseModel):
     type: Literal["app.bsky.embed.external#view"] = Field(..., alias="$type")
-    external: External
+    external: ExternalEmbedData
+
+
+class PostEmbedData(BaseModel):
+    type: Literal["app.bsky.embed.record#viewRecord"] = Field(..., alias="$type")
+    uri: str
+    cid: str
+    author: Author
+    value: Post  # TODO: Not right
+    embeds: list[EmbedType]
+    indexedAt: str
+
+
+class PostEmbed(BaseModel):  # Quote post
+    type: Literal["app.bsky.embed.record#view"] = Field(..., alias="$type")
+    record: PostEmbedData
 
 
 class Post(PostId):

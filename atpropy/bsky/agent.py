@@ -1,7 +1,7 @@
 import requests
 
-from atprotocol import AtpAgent
-from atprotocol.bsky.types import (
+from atpropy import AtpAgent
+from atpropy.bsky.types import (
     ActorResults,
     Feed,
     Followers,
@@ -34,6 +34,13 @@ class BskyAgent(AtpAgent):
 
     def get_author_feed(self, actor: str, limit: int = BSKY_DEFAULT_LIMIT) -> Feed:
         """A view of an actor's feed."""
+        res = requests.get(
+                url=f"{self.service}/xrpc/app.bsky.feed.getAuthorFeed?actor={actor}&limit={limit}",
+                headers=self._get_auth_header(),
+            ).json()
+        
+        print(res)
+        
 
         return Feed.parse_obj(
             requests.get(

@@ -1,6 +1,6 @@
 import requests
 
-from atprotocol.types import Session
+from atpropy.types import Session
 
 
 class AtpAgent:
