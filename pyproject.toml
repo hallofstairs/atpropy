@@ -8,10 +8,8 @@ packages = [{include = 'atprotocol'}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-python-dotenv = "^1.0.0"
 requests = "^2.28.2"
 pydantic = "^1.10.7"
-pre-commit = "^3.2.2"
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.2.0"
@@ -20,6 +18,8 @@ black = "^23.3.0"
 isort = "^5.12.0"
 ipykernel = "^6.22.0"
 types-requests = "^2.28.11.17"
+pre-commit = "^3.2.2"
+python-dotenv = "^1.0.0"
 
 [build-system]
 requires = ["poetry-core"]
