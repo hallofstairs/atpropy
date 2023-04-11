@@ -135,3 +135,6 @@ dmypy.json
 
 # Editors
 .vscode/
+
+# Dependencies
+poetry.lock
