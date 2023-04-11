@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "protopy"
+name = "atprotocol"
 version = "0.0.1"
 description = "Python wrapper for the ATProtocol API"
 authors = ["Jett Hollister <jett.hollister@proton.me>"]
