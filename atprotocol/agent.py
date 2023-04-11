@@ -24,17 +24,22 @@ class AtpAgent:
     def login(self, identifier: str, password: str) -> None:
         """Create ATP session for specified host URL."""
 
+        # TODO: Clean this up
         res = requests.post(
             url=f"{self.service}/xrpc/com.atproto.server.createSession",
             json={"identifier": identifier, "password": password},
         )
 
-        if res.history[0].status_code == 301:
-            redirect_url = res.history[0].headers["Location"]
+        try:
+            self.session = Session.parse_obj(res.json())
 
-            res = requests.post(
-                url=redirect_url,
-                json={"identifier": identifier, "password": password},
-            )
+        except Exception:
+            if res.history[0].status_code == 301:
+                redirect_url = res.history[0].headers["Location"]
 
-        self.session = Session.parse_obj(res.json())
+                res = requests.post(
+                    url=redirect_url,
+                    json={"identifier": identifier, "password": password},
+                )
+
+            self.session = Session.parse_obj(res.json())
